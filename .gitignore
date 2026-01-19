@@ -10,3 +10,8 @@ data/raw/
 data/yolo/
 *.log
 .DS_Store
+
+# Telethon session files
+*.session
+*.session-journal
+
