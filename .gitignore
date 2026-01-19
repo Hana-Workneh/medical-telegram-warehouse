@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+logs/
+data/raw/
+data/yolo/
+*.log
+.DS_Store

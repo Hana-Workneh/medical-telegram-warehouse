@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: med_postgres
+    environment:
+      POSTGRES_USER: med_user
+      POSTGRES_PASSWORD: med_password
+      POSTGRES_DB: med_warehouse
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

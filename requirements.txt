@@ -1,0 +1,8 @@
+telethon==1.36.0
+python-dotenv==1.0.1
+pandas==2.2.2
+sqlalchemy==2.0.32
+psycopg2-binary==2.9.9
+dbt-postgres==1.8.2
+loguru==0.7.2
+tqdm==4.66.5
