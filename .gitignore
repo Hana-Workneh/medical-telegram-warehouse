@@ -30,3 +30,7 @@ medical_warehouse/logs/
 # dbt user file
 medical_warehouse/.user.yml
 
+
+# YOLO weights
+yolov8n.pt
+
