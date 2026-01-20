@@ -15,3 +15,14 @@ data/yolo/
 *.session
 *.session-journal
 
+
+data/
+medical_warehouse/target/
+medical_warehouse/dbt_packages/
+medical_warehouse/logs/
+
+# dbt build artifacts
+medical_warehouse/target/
+medical_warehouse/dbt_packages/
+medical_warehouse/logs/
+

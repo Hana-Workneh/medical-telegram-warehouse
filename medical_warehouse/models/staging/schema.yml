@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_telegram_messages
+    description: "Cleaned and standardized Telegram messages loaded from raw.telegram_messages."
+    columns:
+      - name: message_id
+        description: "Unique Telegram message id within a channel."
+        tests:
+          - not_null
+      - name: channel_name
+        description: "Telegram channel username/name, normalized to lowercase."
+        tests:
+          - not_null
