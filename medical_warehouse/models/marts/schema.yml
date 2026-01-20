@@ -34,3 +34,23 @@ models:
           - relationships:
               to: ref('dim_dates')
               field: date_key
+  - name: fct_image_detections
+    description: "YOLOv8 image detection enrichment joined to message facts."
+    columns:
+      - name: message_id
+        description: "Telegram message id."
+        tests: [not_null]
+      - name: channel_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_channels')
+              field: channel_key
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_key
+      - name: image_category
+        tests: [not_null]
