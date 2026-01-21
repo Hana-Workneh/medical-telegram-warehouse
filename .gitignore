@@ -34,3 +34,6 @@ medical_warehouse/.user.yml
 # YOLO weights
 yolov8n.pt
 
+
+.tmp_dagster_home_*/
+

@@ -45,16 +45,31 @@ def main() -> None:
             continue
 
         for m in messages:
-            rows.append((
-                int(m.get("message_id")),
-                str(m.get("channel_name")),
-                parse_ts(m.get("message_date")),
-                m.get("message_text") or "",
-                bool(m.get("has_media", False)),
-                m.get("image_path"),
-                int(m.get("views") or 0),
-                int(m.get("forwards") or 0),
-            ))
+            # NOTE: your ON CONFLICT key is (channel_name, message_id)
+            # so we keep exactly those fields consistent
+            rows.append(
+                (
+                    int(m.get("message_id")),
+                    str(m.get("channel_name")),
+                    parse_ts(m.get("message_date")),
+                    m.get("message_text") or "",
+                    bool(m.get("has_media", False)),
+                    m.get("image_path"),
+                    int(m.get("views") or 0),
+                    int(m.get("forwards") or 0),
+                )
+            )
+
+    # ------------------ DEDUP (fixes CardinalityViolation) ------------------
+    # Conflict key in SQL: (channel_name, message_id)
+    # In rows tuple: message_id index 0, channel_name index 1
+    unique = {}
+    for r in rows:
+        message_id = r[0]
+        channel_name = r[1]
+        unique[(channel_name, message_id)] = r  # keep the last seen version
+    rows = list(unique.values())
+    # -----------------------------------------------------------------------
 
     conn = psycopg2.connect(
         host=db_host, port=db_port, dbname=db_name, user=db_user, password=db_password
